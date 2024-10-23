@@ -2,6 +2,7 @@ package com.bmt.MyStore.controllers;
 
 import java.util.Date;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.bmt.MyStore.models.AppUser;
 import com.bmt.MyStore.models.RegisterDto;
 import com.bmt.MyStore.repositories.AppUserRepository;
+
+/*attempt at importing extensions/dependencies for unit testing
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.servlet.ModelAndView;
+*/
 
 import jakarta.validation.Valid;
 
@@ -56,6 +70,34 @@ public String register(
 		 );  
 		}
 		
+		/*Attemot at unit testing
+		 @ExtendWith(MockitoExtension.class)
+		 public class AccountControllerTest {
+
+		     @Mock
+		     private AppUserRepository appUserRepository;
+
+		     @InjectMocks
+		     private AccountController accountController;
+
+		     @Test
+		     public void testRegister_RegnumberExists_Error() {
+		         RegisterDto registerDto = new RegisterDto();
+		         registerDto.setRegnumber("H230363Y"); // Registration number already exists
+
+		         AppUser  existingUser  = new AppUser ();
+		         when(appUserRepository.findByRegnumber("H230363Y")).thenReturn(existingUser );
+
+		         BindingResult bindingResult = new BeanPropertyBindingResult(registerDto, "registerDto");
+
+		         ModelAndView modelAndView = accountController.register(new ModelMap(), registerDto, bindingResult);
+
+		         assertFalse(((ModelMap) modelAndView.getModel()).containsAttribute("success")); 
+		         verify(appUserRepository, never()).save(any()); // User should not be saved
+		         assertTrue(((ModelMap) modelAndView.getModel()).containsAttribute("errorMessage")); // Check for error message
+		     }
+		 }
+		 */
 	if (result.hasErrors()) {
 		return "register";
 	}
@@ -90,5 +132,8 @@ public String register(
 		
  return "register";  
  
+
+
+
 	}
 }
