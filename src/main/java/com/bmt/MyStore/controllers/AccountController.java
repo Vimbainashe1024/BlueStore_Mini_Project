@@ -79,10 +79,7 @@ public String register(
 		 model.addAttribute("registerDto", new RegisterDto());
 		 model.addAttribute("success",true);
 		 
-		 AppUser createdUser = repo.findByRegnumber(registerDto.getRegnumber());
-		 model.addAttribute("user", createdUser);
-		
-		 
+	
 		} 
 	  catch (Exception ex) {  
 		 result.addError(

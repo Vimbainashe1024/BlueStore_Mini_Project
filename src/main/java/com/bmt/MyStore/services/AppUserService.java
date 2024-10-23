@@ -28,9 +28,9 @@ public class AppUserService implements UserDetailsService {
         }
 
         // Create UserDetails object if user is found
-        return User.withUsername(appUser .getRegnumber())
-                   .password(appUser .getPassword())
-                   .roles(appUser .getRole()) // Ensure this is a valid role
+        return User.withUsername(appUser.getRegnumber())
+              .password(appUser.getPassword())
+                   .roles(appUser.getRole()) // Ensure this is a valid role
                    .build();
     }
 }
